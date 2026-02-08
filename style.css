@@ -62,3 +62,12 @@ button {
   border-radius: 6px;
   cursor: pointer;
 }
+#narration {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef2ff;
+  border-radius: 8px;
+  min-height: 50px;
+  font-size: 14px;
+}
+

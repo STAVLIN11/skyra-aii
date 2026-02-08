@@ -1,34 +1,45 @@
-function getBotReply(question) {
-  question = question.toLowerCase();
+function runLesson() {
+  const stage = document.getElementById("stage");
+  stage.innerHTML = "";
+
+  const question = document.getElementById("question").value.toLowerCase();
+
+  // TEMP LOGIC (AI WILL REPLACE THIS LATER)
+  let steps = [];
 
   if (question.includes("pseudocode")) {
-    return "Pseudocode is a simple way to write steps of a program using plain language. Imagine writing instructions for a computer without worrying about real code syntax. For example, to add two numbers, we write: start, take two numbers, add them, show the result, stop.";
+    steps = [
+      { text: "PSEUDOCODE", color: "yellow" },
+      { text: "START", color: "blue" },
+      { text: "IF hungry", color: "yellow" },
+      { text: "Make sandwich", color: "green" },
+      { text: "ELSE relax", color: "red" },
+      { text: "END", color: "blue" }
+    ];
+  } else {
+    steps = [
+      { text: "Skyra is thinking...", color: "yellow" },
+      { text: "I will explain this soon!", color: "blue" }
+    ];
   }
 
-  if (question.includes("who are you")) {
-    return "I am Skyra, your AI companion. I help you learn, think, and understand things clearly.";
-  }
-
-  if (question.includes("what is ai")) {
-    return "Artificial Intelligence is when machines are designed to think and act like humans. For example, chatbots, voice assistants, and recommendation systems use AI.";
-  }
-
-  return "That’s a good question. I’m still learning. Soon I’ll be able to answer this perfectly.";
+  animateSteps(stage, steps);
 }
 
-function sendMessage() {
-  let input = document.getElementById("message");
-  let chat = document.getElementById("chat");
+function animateSteps(stage, steps) {
+  let index = 0;
 
-  let userMsg = input.value.trim();
-  if (userMsg === "") return;
+  const interval = setInterval(() => {
+    if (index >= steps.length) {
+      clearInterval(interval);
+      return;
+    }
 
-  chat.innerHTML += `<div class="message user">${userMsg}</div>`;
-  input.value = "";
+    const block = document.createElement("div");
+    block.className = `block ${steps[index].color}`;
+    block.innerText = steps[index].text;
 
-  setTimeout(() => {
-    let reply = getBotReply(userMsg);
-    chat.innerHTML += `<div class="message bot">${reply}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-  }, 700);
+    stage.appendChild(block);
+    index++;
+  }, 900);
 }

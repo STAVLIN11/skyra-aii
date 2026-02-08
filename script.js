@@ -2,53 +2,31 @@ function runLesson() {
   const stage = document.getElementById("stage");
   const narration = document.getElementById("narration");
 
+  if (!stage || !narration) {
+    alert("Stage or narration not found");
+    return;
+  }
+
   stage.innerHTML = "";
   narration.innerText = "";
 
-  const question = document.getElementById("question").value.toLowerCase();
+  const questionInput = document.getElementById("question");
+  const question = questionInput ? questionInput.value.toLowerCase() : "";
 
   let steps = [];
 
   if (question.includes("pseudocode")) {
     steps = [
-      {
-        visual: "PSEUDOCODE",
-        color: "yellow",
-        explain: "Pseudocode is a simple way to plan a program using easy words."
-      },
-      {
-        visual: "START",
-        color: "blue",
-        explain: "Every program begins with a START step."
-      },
-      {
-        visual: "IF hungry",
-        color: "yellow",
-        explain: "Here we check a condition to make a decision."
-      },
-      {
-        visual: "Make sandwich",
-        color: "green",
-        explain: "If the condition is true, this action happens."
-      },
-      {
-        visual: "ELSE relax",
-        color: "red",
-        explain: "If the condition is false, we choose another action."
-      },
-      {
-        visual: "END",
-        color: "blue",
-        explain: "END means the program is finished."
-      }
+      { visual: "PSEUDOCODE", color: "yellow", explain: "Pseudocode is a simple way to plan a program." },
+      { visual: "START", color: "blue", explain: "START means the program begins here." },
+      { visual: "IF hungry", color: "yellow", explain: "This checks a condition." },
+      { visual: "Make sandwich", color: "green", explain: "This happens when the condition is true." },
+      { visual: "ELSE relax", color: "red", explain: "This happens when the condition is false." },
+      { visual: "END", color: "blue", explain: "END means the program finishes." }
     ];
   } else {
     steps = [
-      {
-        visual: "Skyra is thinking",
-        color: "yellow",
-        explain: "I will explain this topic soon."
-      }
+      { visual: "Skyra", color: "yellow", explain: "Try typing: Teach pseudocode" }
     ];
   }
 
@@ -61,7 +39,7 @@ function animateSteps(stage, narration, steps) {
   const interval = setInterval(() => {
     if (index >= steps.length) {
       clearInterval(interval);
-      narration.innerText = "That is the full explanation.";
+      narration.innerText = "Lesson complete!";
       return;
     }
 
@@ -72,7 +50,6 @@ function animateSteps(stage, narration, steps) {
     block.innerText = step.visual;
 
     stage.appendChild(block);
-
     narration.innerText = step.explain;
 
     index++;

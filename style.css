@@ -17,12 +17,11 @@ body {
 }
 
 #stage {
-  height: 300px;
+  height: 260px;
   background: #f9fafb;
   border-radius: 10px;
   padding: 10px;
   overflow: hidden;
-  position: relative;
 }
 
 .block {
@@ -41,6 +40,15 @@ body {
 @keyframes pop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+#narration {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef2ff;
+  border-radius: 8px;
+  min-height: 50px;
+  font-size: 14px;
 }
 
 .controls {
@@ -62,12 +70,3 @@ button {
   border-radius: 6px;
   cursor: pointer;
 }
-#narration {
-  margin-top: 10px;
-  padding: 10px;
-  background: #eef2ff;
-  border-radius: 8px;
-  min-height: 50px;
-  font-size: 14px;
-}
-
